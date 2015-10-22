@@ -3,16 +3,35 @@ require 'spec_helper'
 
 describe CdmBatch::ETDLoader do
 	
-	it 'parses ETD tab delimited file into rows'
-
-	it 'has an attribute data which is a hash ' do
-		loader = CdmBatch::ETDLoader.new({})
-		expect(loader.data).to be_a Hash
+	before(:all) do
+	  @etds = CdmBatch::ETDLoader.new("fixtures/etd_tab.txt")
 	end
 
-	it ''
+	describe "how the data should be parsed" do
+	  it 'parses ETD file into an aray item per row' do
+	    expect(@etds.data.length).to eq(2)
+	  end
+	  
+	  it 'creates a hash for each row' do
+	  	@etds.data.each do |row|
+	  		expect(row).to be_an_instance_of Hash 
+	  	end
+	  end
 
-	it 'checks that that file related to each metadata entry is present'
-	it 'checks that the file is a valid PDF'
+	  describe "how the data for each record is stored" do
+	    it 'has author date' do
+	      expect(@etds.data[0][:author]).to eq "McTesterson, Test Y"
+	      expect(@etds.data[1][:author]).to eq "Datapoint, Ima Mock"
+	    end
 
+	    it 'has title data' do
+	      expect(@etds.data[0][:title]).to eq "Influences of Testing on Code Quality"
+	    end
+
+	    it 'has filename data' do
+	      expect(@etds.data[0][:"file name"]).to eq "TETDEDXMcTesterson-temple-12345-6789.pdf"
+	      expect(@etds.data[1][:"file name"]).to eq "TETDEDXDatapoint-temple-12345-6789.pdf"
+	    end
+	  end  
+	end
 end

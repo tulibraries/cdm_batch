@@ -4,6 +4,8 @@ describe CdmBatch do
   it 'has a version number' do
     expect(CdmBatch::VERSION).not_to be nil
   end
+  
+  it 'checks that each records associated file is present'
 
   it 'logs each successful upload to current batch log'
   it 'logs errors to current batch error log'
