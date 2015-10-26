@@ -1,0 +1,14 @@
+---
+
+required_fields:
+  - file
+  - author 
+  - title
+ 
+
+# Defines the name attribute of the input fo each field
+form_fields:
+  file: file_input
+  author: creator
+  title: title
+  subject: subject

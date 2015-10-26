@@ -4,7 +4,7 @@ require 'spec_helper'
 describe CdmBatch::ETDLoader do
 	
 	before(:all) do
-	  @etds = CdmBatch::ETDLoader.new("fixtures/etd_tab.txt")
+	  @etds = CdmBatch::ETDLoader.new("fixtures/etd-data/etd_tab.txt")
 	end
 
 	describe "how the data should be parsed" do
@@ -34,4 +34,9 @@ describe CdmBatch::ETDLoader do
 	    end
 	  end  
 	end
+
+	describe 'how the path to the etd data and pdfs is exposed'
+	  it 'exposes basepath attr' do
+        expect(@etds.basepath).to eq "fixtures/etd-data"
+	  end
 end

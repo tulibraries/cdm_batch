@@ -1,0 +1,43 @@
+---
+
+required_fields:
+  - file
+  - author 
+  - title
+  - digital_collection
+
+# Defines the name attribute of the input fo each field
+form_fields:
+  file: CISOBROWSE
+  author: creato
+  title: title 
+  title_alternative: titlea
+  year_degree_awarded: date
+  department: descri
+  degree: degree
+  abstract: abstra
+  accompanied_by: accoma
+  accompanies: accomp
+  advisor: contri
+  committee_members: audien
+  degree_granting_institution: degrea
+  restriction_note: restri
+  subject: subjec
+  keywords: covera
+  publisher: publis
+  type: type
+  format: format
+  number_of_pages: relati
+  source: source
+  language: langua
+  identifier: identi
+  rights: rights
+  description: descra
+  digital_collection: digita
+  embargo_statement: embarg
+  contact: contac
+  created: create
+  file_name: filea
+  ada_note: ada
+  document_content: docume
+  file_size: file

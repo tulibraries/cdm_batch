@@ -1,0 +1,7 @@
+---
+
+
+# Defines the name attribute of the input fo each field
+form_fields:
+  file: CISOBROWSE
+  author: creato
