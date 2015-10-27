@@ -6,7 +6,8 @@ required_fields:
   - title
   - digital_collection
 
-# Defines the name attribute of the input fo each field
+# For each field in the ETD data,
+# identifies the apprpopriate input element by name attribute
 form_fields:
   file: CISOBROWSE
   author: creato
@@ -41,3 +42,35 @@ form_fields:
   ada_note: ada
   document_content: docume
   file_size: file
+"Author",
+ "Title",
+ "Title-Alternative",
+ "Year Degree Awarded",
+ "Department",
+ "Degree",
+ "Abstract",
+ "Accompanied by",
+ "Accompanies",
+ "Advisor",
+ "Committee Members",
+ "Degree Granting Institution",
+ "Restriction Note",
+ "Subject",
+ "Keywords",
+ "Publisher",
+ "Type",
+ "Format",
+ "Number of Pages",
+ "Source",
+ "Language",
+ "Identifier",
+ "Rights",
+ "Description",
+ "Digital Collection",
+ "Embargo statement",
+ "Contact",
+ "Created",
+ "File Size",
+ "ADA Note",
+ "Document Content",
+ "File Name"

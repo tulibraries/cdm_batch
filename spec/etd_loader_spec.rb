@@ -29,8 +29,8 @@ describe CdmBatch::ETDLoader do
 	    end
 
 	    it 'has filename data' do
-	      expect(@etds.data[0][:"file name"]).to eq "TETDEDXMcTesterson-temple-12345-6789.pdf"
-	      expect(@etds.data[1][:"file name"]).to eq "TETDEDXDatapoint-temple-12345-6789.pdf"
+	      expect(@etds.data[0][:"file_name"]).to eq "TETDEDXMcTesterson-temple-12345-6789.pdf"
+	      expect(@etds.data[1][:"file_name"]).to eq "TETDEDXDatapoint-temple-12345-6789.pdf"
 	    end
 	  end  
 	end
@@ -39,4 +39,12 @@ describe CdmBatch::ETDLoader do
 	  it 'exposes basepath attr' do
         expect(@etds.basepath).to eq "fixtures/etd-data"
 	  end
+
+	describe '#file_check' do
+	  it 'throws an error of a file is not present' do
+			missing_files = "fixtures/etd-data/etd_missing_files.txt"
+		  expect {CdmBatch::ETDLoader.new(missing_files)}.to raise_exception(IOError) 
+		end
+	end
+
 end

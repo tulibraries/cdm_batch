@@ -5,7 +5,9 @@ describe CdmBatch do
     expect(CdmBatch::VERSION).not_to be nil
   end
   
-  it 'checks that each records associated file is present'
+  it 'checks that each records associated file is present' do
+	  
+	end
 
   it 'logs each successful upload to current batch log'
   it 'logs errors to current batch error log'
@@ -15,5 +17,5 @@ describe CdmBatch do
 
   it 'does not archive current batch log if any batch item raises an error'
 
-  it 'does not re-upload items in cuurent batch log if batch restarted'  
+  it 'does not re-upload items in current batch log if batch restarted'  
 end
