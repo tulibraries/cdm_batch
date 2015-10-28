@@ -17,14 +17,22 @@ module CdmBatch
 	    form_values << input_name => record[field.to_sym]  
 	  end
         end	  
-	
-	File.open(File.join(form.basepath, record[:file_name])) do |pdf|
-	  req = Net::HTTP::Post::Multipart.new form.url.path, form_values,
-	    @form.fields[:file] => UploadIO.new(pdf, "application/pdf", @form.fields[:file_name])
-	  res = Net::HTTP.start(form.url.host, form.url.port) do |http|
-            http.request(req)		
-	  end 
-        end	  
+payload = {:CISOBROWSE => Faraday::UploadIO.new("fixtures/etd-data/TETDEDXMcTesterson-temple-12345-6789.pdf", "application/pdf")}
+payload.merge!(:CISOFILE => 'file')
+payload.merge!({:creato => 'Test Author from cli'})
+payload.merge!(:title => 'Test from cli')
+payload.merge!(:CISOTHUMB => 'auto')
+payload.merge!(:CISODB => '/p245801coll11')
+payload.merge!(:digita => 'Dissertations Test')
+connect = Faraday.new("https://server16002.contentdm.oclc.org") do |f|
+  f.request :url_encoded
+  f.request :multipart
+  f.headers['Referer'] = "https://server16002.contentdm.oclc.org/cgi-bin/admin/add.exe?CISODB=/p245801coll11&CISOHEAD=&CISOMODE=1"
+  f.headers['Connection'] = 'keep-alive'
+  f.basic_auth(@credentials['username'],@credentials['password'])
+  f.adapter :net_http
+end	
+connect.post "/dmscripts/admin/dmadd.php", payload 
       end
     end
   end
