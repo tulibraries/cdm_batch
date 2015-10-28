@@ -1,5 +1,7 @@
 ---
 
+url: "http://contentdmserver.com/location/collection/path"
+
 required_fields:
   - file
   - author 
@@ -42,35 +44,3 @@ form_fields:
   ada_note: ada
   document_content: docume
   file_size: file
-"Author",
- "Title",
- "Title-Alternative",
- "Year Degree Awarded",
- "Department",
- "Degree",
- "Abstract",
- "Accompanied by",
- "Accompanies",
- "Advisor",
- "Committee Members",
- "Degree Granting Institution",
- "Restriction Note",
- "Subject",
- "Keywords",
- "Publisher",
- "Type",
- "Format",
- "Number of Pages",
- "Source",
- "Language",
- "Identifier",
- "Rights",
- "Description",
- "Digital Collection",
- "Embargo statement",
- "Contact",
- "Created",
- "File Size",
- "ADA Note",
- "Document Content",
- "File Name"

@@ -1,5 +1,6 @@
 ---
 
+url: "http://contentdmserver.com/location/collection/path"
 
 # Defines the name attribute of the input fo each field
 form_fields:

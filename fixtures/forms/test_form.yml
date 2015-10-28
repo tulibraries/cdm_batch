@@ -1,5 +1,7 @@
 ---
 
+url: "http://contentdmserver.com/location/collection/path"
+
 required_fields:
   - file
   - author 
