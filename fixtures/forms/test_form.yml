@@ -2,6 +2,8 @@
 
 url: "http://contentdmserver.com/location/collection/path"
 
+collection_id: "/TESTING-ID"
+
 required_fields:
   - file
   - author 
@@ -12,5 +14,34 @@ required_fields:
 form_fields:
   file: file_input
   author: creator
-  title: title
+  title: title 
+  title_alternative: titlea
+  year_degree_awarded: date
+  department: descri
+  degree: degree
+  abstract: abstra
+  accompanied_by: accoma
+  accompanies: accomp
+  advisor: contri
+  committee_members: audien
+  degree_granting_institution: degrea
+  restriction_note: restri
   subject: subject
+  keywords: covera
+  publisher: publis
+  type: type
+  format: format
+  number_of_pages: relati
+  source: source
+  language: langua
+  identifier: identi
+  rights: rights
+  description: descra
+  digital_collection: digita
+  embargo_statement: embarg
+  contact: contac
+  created: create
+  file_name: filea
+  ada_note: ada
+  document_content: docume
+  file_size: file
