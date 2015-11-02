@@ -1,4 +1,7 @@
 require "cdm_batch/version"
+require "cdm_batch/etd_loader"
+require "cdm_batch/form"
+require "cdm_batch/form_filler"
 
 module CdmBatch
 

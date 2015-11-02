@@ -1,5 +1,3 @@
-require "etd_loader"
-require "form"
 require 'faraday'
 require 'faraday_middleware'
 require 'mime-types'
@@ -9,8 +7,8 @@ module CdmBatch
     attr_reader :etds, :form
 
     def initialize(metadata_path, form_config_path, credentials={})
-      @etds = CdmBatch::ETDLoader.new(metadata_path)
-      @form = CdmBatch::Form.new(form_config_path, form_url=nil)
+      @etds = ETDLoader.new(metadata_path)
+      @form = Form.new(form_config_path, form_url=nil)
       @creds = credentials
     end
 
