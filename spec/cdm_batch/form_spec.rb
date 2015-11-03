@@ -8,7 +8,7 @@ describe CdmBatch::Form do
     end
 
 	it 'accepts a valid http url as the forms URI' do
-    expect(@form.url).to be_an_instance_of(URI::HTTP)
+    expect(@form.url).to be_an_instance_of(URI::HTTPS)
 	end
 
 	it 'does not accept an invalid http URL as the forms uri' do

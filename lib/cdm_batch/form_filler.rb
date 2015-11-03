@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'mime-types'
+require 'csv'
 
 module CdmBatch
   class FormFiller
@@ -10,21 +11,29 @@ module CdmBatch
       @etds = ETDLoader.new(metadata_path)
       @form = Form.new(form_config_path, form_url=nil)
       @creds = credentials
+      @could_not_be_uploaded
     end
 
     def upload_batch
-      @etds.data.each do |record|
-        response submit_single_record record
-        if response.body.includes?("The item was not added to the pending queue.")
-          #log failure - Add csv data to file? 
+      result = {:failed =>  [], :succeeded => []}
+      @etds.data.each_with_index do |record, index|
+        response = upload_single_record record
+        if response.body.include?("<META HTTP-EQUIV=\"refresh\"") 
+          result[:succeeded] << {:index => index, :file_name => record[:file_name]} 
+        elsif response.body.include?("The item was not added to the pending queue.")
+          #log size failure - Add csv data to file? 
+          result[:failed] << index
+        else
+          #log 
         end
       end
+      return result
     end
 
-    def submit_single_record(record)
+    def upload_single_record(record)
       payload = build_payload record
       connection = create_connection
-      result = connection.post @form.url.path , payload 
+      response = connection.post @form.url.path , payload 
       return response
     end
     
@@ -68,7 +77,23 @@ module CdmBatch
         f.use FaradayMiddleware::FollowRedirects
         f.adapter :net_http
       end
-    end 
+    end
+
+    def could_not_upload(record)
+      @could_not_be_uploaded ||= create_could_not_be_uploaded_tsv
+
+ 
+    end  
+
+    def create_could_not_be_uploaded_tsv()
+      filepath = FILE.join @etds.basepath, "could_not_be_uploaded.tsv"
+      options  = {:col_sep => "\t"}
+      not_uploaded_log = CSV.open(filepath, "wb", options) do |csvfile|
+        csvfile << @etds.data.first.headers
+      end
+      return csvfile
+
+    end
   end
 end
 

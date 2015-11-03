@@ -1,6 +1,9 @@
 ---
 
-url: "http://contentdmserver.com/location/collection/path"
+url: "https://our.example.tld/dmscripts/admin/dmadd.php"
+
+
+referer_path: "cgi-bin/admin/add.exe?CISODB=/TESTING-IDcoll11&CISOHEAD=&CISOMODE=1"
 
 collection_id: "/TESTING-ID"
 
