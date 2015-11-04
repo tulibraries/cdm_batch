@@ -22,7 +22,7 @@ module CdmBatch
           result[:succeeded] << {:index => index, :file_name => record[:file_name]} 
         elsif response.body.include?("The item was not added to the pending queue.")
           #log size failure - Add csv data to file? 
-          result[:failed] << index
+          result[:failed] << {:index => index, :file_name => record[:file_name]}
         else
           #log 
         end
