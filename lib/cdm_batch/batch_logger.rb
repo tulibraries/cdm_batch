@@ -1,7 +1,29 @@
 require 'cdm_batch'
+require 'logger'
 
 module CdmBatch
   class BatchLogger
+
+    attr_accessor :logger
+
+    def initialize(logtype)
+      logname  = pick_logname logtype
+      filepath = File.join(Dir.pwd, "#{logname}") 
+      @logger = Logger.new(filepath)
+    end
+
+    def  pick_logname(logtype)
+      if logtype.eq("failure")
+        logname = "cdm-batch-error.log"
+      else
+        logname = "cdm-batch.log"
+      end
+      retun logname 
+    end
+
+    def log_successful_upload(record)
+      
+    end 
 
     def self.could_not_upload()
       @could_not_be_uploaded ||= create_could_not_be_uploaded_tsv
