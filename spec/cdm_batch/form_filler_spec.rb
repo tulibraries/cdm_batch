@@ -96,26 +96,4 @@ describe CdmBatch::FormFiller do
       expect(connection.builder.handlers).to include(Faraday::Request::Multipart, Faraday::Request::UrlEncoded)
     end
   end
-
-  describe '#upload_batch'do
-  RSpec.configure do |config|
-    config.before(:context) do
-    # Stub the dummy url in fixtures/forms/test_form.yml to return
-    # a failed request  
-      stub_request(:post, "https://our.example.tld/dmscripts/admin/dmadd.php").
-        to_return(:body => "The item was not added to the pending queue. If you tried to add a very large file, use the Project Client to add the file.")
-    end
-  end
-    let(:result) { @filler.upload_batch}
-
-    it 'returns a hash ' do 
-      expect(result).to have_key(:failed)
-      expect(result).to have_key(:succeeded)
-    end
-
-    it 'includes an array of all failed records' do
-      expect(result[:failed].length).to eq(2)
-    end
-
-  end
 end

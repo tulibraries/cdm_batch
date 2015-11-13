@@ -1,7 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 require 'mime-types'
-require 'csv'
+require 'cdm_batch/logger'
 
 module CdmBatch
   class FormFiller
@@ -15,25 +15,16 @@ module CdmBatch
     end
 
     def upload_batch
-      result = {:failed =>  [], :succeeded => []}
       @etds.data.each_with_index do |record, index|
         response = upload_single_record record
-        if response.body.include?("<META HTTP-EQUIV=\"refresh\"") 
-          result[:succeeded] << {:index => index, :file_name => record[:file_name]} 
-        elsif response.body.include?("The item was not added to the pending queue.")
-          #log size failure - Add csv data to file? 
-          result[:failed] << {:index => index, :file_name => record[:file_name]}
-        else
-          #log 
-        end
+        log_response response, record, index
       end
-      return result
     end
 
     def upload_single_record(record)
       payload = build_payload record
       connection = create_connection
-      response = connection.post @form.url.path , payload 
+      response = connection.post @form.url.path , payload
       return response
     end
     
@@ -79,20 +70,18 @@ module CdmBatch
       end
     end
 
-    def could_not_upload(record)
-      @could_not_be_uploaded ||= create_could_not_be_uploaded_tsv
-
- 
-    end  
-
-    def create_could_not_be_uploaded_tsv()
-      filepath = FILE.join @etds.basepath, "could_not_be_uploaded.tsv"
-      options  = {:col_sep => "\t"}
-      not_uploaded_log = CSV.open(filepath, "wb", options) do |csvfile|
-        csvfile << @etds.data.first.headers
+    def log_response(response, record, index)
+      if response.body.include?("<META HTTP-EQUIV=\"refresh\"") 
+        SuccessLogger.write_log ("File '#{record[:file_name]}' with title '#{record[:title]}' successfully uploaded") 
+      else 
+        if response.body.include?("The item was not added to the pending queue.")
+          message = "File '#{record[:file_name]}' with title '#{record[:title]}' was not uploaded because it was too big. Please use the project client"
+        else
+          message = "File '#{record[:file_name]}' with title '#{record[:title]}'  was not uploaded becuase of on unexpected response from the server."
+        end
+        FailureLogger.write_log(message)
+        CdmBatch::FailedETDWriter.new.add_to_failed_upload_tsv @etds.filepath, index
       end
-      return csvfile
-
     end
   end
 end
