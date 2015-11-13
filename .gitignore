@@ -7,3 +7,6 @@
 /pkg/
 /spec/reports/
 /tmp/
+could_not_be_uploaded.tsv
+.cdm_creds
+*.log
