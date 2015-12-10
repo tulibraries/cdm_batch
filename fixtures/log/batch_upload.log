@@ -1,0 +1,3 @@
+# Logfile created on 2015-11-13 14:50:05 -0500 by logger.rb/47272
+I, [2015-11-13T14:50:05.230630 #28569]  INFO -- : File 'TETDEDXDatapoint-temple-12345-6789.pdf' with title 'Something Something' successfully uploaded
+I, [2015-11-13T14:50:14.892239 #28569]  INFO -- : File 'TETDEDXSomethingElseSomething.pdf' with title 'Something else' successfully uploaded
