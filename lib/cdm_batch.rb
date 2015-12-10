@@ -34,7 +34,7 @@ module CdmBatch
   end
 
   def self.get_creds_from_yaml(filename=nil)
-  	filename ||= ".cdm_creds"
+  	filename ||= "cdm_creds"
   	if File.exists?(filename)
       yaml_creds = File.open(filename) { |file| YAML.load(file) }
       creds = {:username => yaml_creds["username"], :password => yaml_creds["password"]}
