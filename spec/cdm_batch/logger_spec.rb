@@ -13,7 +13,7 @@ describe CdmBatch::SuccessLogger do
       @uploaded = CdmBatch::SuccessLogger.already_uploaded? filename, logfile
     end
     it 'should find a filename in a log' do
-      expect(@uploaded).to be true
+      expect(@uploaded).to be_truthy
     end
 
   end

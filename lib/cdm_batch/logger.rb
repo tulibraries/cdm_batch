@@ -14,6 +14,15 @@ module CdmBatch
       logger.add(log_level) { message }
       logger.close
     end
+
+    def self.string_in_logfile?(string, log_filepath)
+      return false unless File.exists?(log_filepath)
+      File.open(log_filepath) do |f|
+        f.each_line.detect do |line|
+          /#{string}/.match(line)
+        end
+      end
+    end
   end
 
   class SuccessLogger
@@ -28,20 +37,7 @@ module CdmBatch
   
     def self.already_uploaded?(record_filename, log_filepath=nil)
       log_filepath ||= "batch_upload.log"
-      if File.exists?(log_filepath)
-        uploaded = File.open(log_filepath) do |f|
-          f.each_line.detect do |line|
-            /#{record_filename}/.match(line)
-          end
-        end
-      else
-        uploaded = false
-      end
-      if uploaded 
-        return true 
-      else 
-        return false
-      end
+      BatchLogger.string_in_logfile? record_filename, log_filepath
     end
   end
 
@@ -56,8 +52,6 @@ module CdmBatch
       log_level = Logger::DEBUG
       BatchLogger.write_to_log(log_path, log_level, message)
     end
-
-    
-    
   end
+
 end
