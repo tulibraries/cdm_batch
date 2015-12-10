@@ -7,7 +7,7 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 
 task :upload_etd, [:etd_metadata_path] do |t, args|
-  form_config_path = File.join('config', "etd_form.yml")
+  form_config_path = File.join(%w{config etd_form.yml})
   creds = CdmBatch.get_cdm_credentials
   filler = CdmBatch::FormFiller.new args.etd_metadata_path, form_config_path, creds
   filler.upload_batch

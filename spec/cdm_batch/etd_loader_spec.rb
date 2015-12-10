@@ -4,7 +4,7 @@ require 'spec_helper'
 describe CdmBatch::ETDLoader do
 	
 	before(:all) do
-	  @etds = CdmBatch::ETDLoader.new("fixtures/etd-data/etd_tab.txt")
+	  @etds = CdmBatch::ETDLoader.new(File.join(%W{fixtures etd-data etd_tab.txt}))
 	end
 
 	describe "how the data should be parsed" do
@@ -37,12 +37,12 @@ describe CdmBatch::ETDLoader do
 
 	describe 'how the path to the etd data and pdfs is exposed'
 	  it 'exposes basepath attr' do
-        expect(@etds.basepath).to eq "fixtures/etd-data"
+        expect(@etds.basepath).to eq File.join(%W{fixtures etd-data})
 	  end
 
 	describe '#file_check' do
 	  it 'throws an error of a file is not present' do
-			missing_files = "fixtures/etd-data/etd_missing_files.txt"
+			missing_files = File.join(%W{fixtures etd-data etd_missing_files.txt})
 		  expect {CdmBatch::ETDLoader.new(missing_files)}.to raise_exception(IOError) 
 		end
 	end
