@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CdmBatch::Form do
     
     before(:all) do
-      config_file = "fixtures/forms/test_form.yml" 
+      config_file = File.join(%W{fixtures forms test_form.yml})
       @form = CdmBatch::Form.new(config_file)
     end
 
@@ -13,7 +13,7 @@ describe CdmBatch::Form do
 
 	it 'does not accept an invalid http URL as the forms uri' do
 	  url  = "not a valid http uri"
-		expect{CdmBatch::Form.new("fixtures/forms/test_form.yml", url)}.to raise_error(URI::InvalidURIError)
+		expect{CdmBatch::Form.new(File.join(%W{fixtures forms test_form.yml}), url)}.to raise_error(URI::InvalidURIError)
 	end
 
 	  
@@ -22,7 +22,7 @@ describe CdmBatch::Form do
 	end
 
 	it 'can handle having no required fields' do
-	  form =  CdmBatch::Form.new("fixtures/forms/no_required_form.yml")
+	  form =  CdmBatch::Form.new(File.join(%W{fixtures forms no_required_form.yml}))
 	  expect(form.required_fields).to be nil
 	end
 

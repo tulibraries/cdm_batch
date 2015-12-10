@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe CdmBatch::FormFiller do
   before(:all) do
-    metadata_path = "fixtures/etd-data/etd_tab.txt"
-    form_config = "fixtures/forms/test_form.yml"
+    metadata_path = File.join(%W{fixtures etd-data etd_tab.txt})
+    form_config = File.join(%W{fixtures forms test_form.yml})
     @filler = CdmBatch::FormFiller.new metadata_path, form_config   
   end
 
