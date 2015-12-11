@@ -3,9 +3,9 @@
 
 url: "https://server16002.contentdm.oclc.org/dmscripts/admin/dmadd.php"
 
-collection_id: "/p245801coll10"
+collection_id: "/p245801coll11"
 
-referer_path: "cgi-bin/admin/add.exe?CISODB=/p245801coll10&CISOHEAD=&CISOMODE=1"
+referer_path: "cgi-bin/admin/add.exe?CISODB=/p245801coll11&CISOHEAD=&CISOMODE=1"
 
 
 required_fields:
