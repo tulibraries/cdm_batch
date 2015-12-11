@@ -58,7 +58,7 @@ module CdmBatch
     end
 
     def create_connection()
-      connection = Faraday.new(@form.url) do |f|
+      connection = Faraday.new(@form.url, get_ssl_verify_settings) do |f|
         f.request :multipart
         f.request :url_encoded
         f.response :logger
@@ -81,6 +81,12 @@ module CdmBatch
         end
         FailureLogger.write_log(message)
         CdmBatch::FailedETDWriter.new.add_to_failed_upload_tsv @etds.filepath, index
+      end
+    end
+
+    def get_ssl_verify_settings
+      if  /mswin|msys|mingw|cygwin|bccwin|wince|emc/.match RbConfig::CONFIG['host_os']
+        { ssl: { verify: false } }
       end
     end
   end
