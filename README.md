@@ -1,41 +1,23 @@
 # CdmBatch
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cdm_batch`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Installation on Windows
 
-TODO: Delete this and the text above, and describe your gem
+Before we can start using cdm_batch on Windows machine, we need to make sure Ruby and Git are installed.
 
-## Installation
+### Installing Ruby
+Download Ruby 2.1.7 from [RubyInstaller](http://rubyinstaller.org). Make sure to select the one-click installer, and not the archive. 
 
-Add this line to your application's Gemfile:
+While following the installer instructions, when it asks about the installation path, use the default installation path, but make sure to tick the `Add Ruby executables to your PATH` and `Associate .rb and .rbw files with this Ruby Installation` checkboxes.
 
-```ruby
-gem 'cdm_batch'
-```
+### Git
 
-And then execute:
+Download [Git for Windows](https://git-scm.com/download/win) and run the installer. 
+* On the `Select Components` screen of the instllation, ensure that the `Windows Explorer Integration`, `Git Bash Here`, and `Git GUI Here` boxes are ticked.
+* In the `Adjusting you PATH environment` screen, select the `Use Git from the Windows Command Prompt` option is ticked.
 
-    $ bundle
+With those two steps complete, we can now install `cdm_batch`.
 
-Or install it yourself as:
+### Checkout the tul_cdm repository
 
-    $ gem install cdm_batch
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cdm_batch. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+In the start menu, search for "ruby" abnd the select `Start Command Prompt with Ruby`. This will start a command line window where we are going to run some commands to install .
 
