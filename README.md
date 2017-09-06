@@ -5,7 +5,7 @@
 Before we can start using cdm_batch on Windows machine, we need to make sure Ruby and Git are installed.
 
 ### Installing Ruby
-Download Ruby 2.1.7 from [RubyInstaller](http://rubyinstaller.org). Make sure to select the one-click installer, and not the archive. 
+Download Ruby 2.4.1-2 from [RubyInstaller](http://rubyinstaller.org). Make sure to select the one-click installer, and not the archive. 
 
 While following the installer instructions, when it asks about the installation path, use the default installation path, but make sure to tick the `Add Ruby executables to your PATH` and `Associate .rb and .rbw files with this Ruby Installation` checkboxes.
 
